@@ -1,0 +1,15 @@
+project:
+  type: default
+
+execute:
+  echo: true
+  eval: true
+  freeze: false
+
+format:
+  html:
+    theme: default
+    toc: true
+    code-fold: true
+    self-contained: true
+
