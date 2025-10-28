@@ -205,7 +205,7 @@ plt.show()
 #| label: dag-3-1928
 #| echo: true
 
-# Create DAG showing the 1928 understanding: Vitamin C → Scurvy Prevention
+# Create DAG showing the 1928 understanding: Vitamin C → Collagen Synthesis → Scurvy Prevention
 # This is the COMPLETE and CORRECT understanding of the scurvy mechanism
 
 import daft
@@ -215,7 +215,7 @@ import matplotlib.pyplot as plt
 pgm = daft.PGM(dpi=150)
 
 # Add nodes with professional colors - using cool, trustworthy colors for correct understanding
-pgm.add_node("vitamin_c", "Vitamin C\n(Complete Truth)", 1, 1, aspect=3.2, scale=1.5,
+pgm.add_node("vitamin_c", "Vitamin C", 1, 1, aspect=3.2, scale=1.5,
              plot_params={
                  'facecolor': '#40E0D0',  # Vibrant turquoise for Vitamin C
                  'edgecolor': '#008B8B',  # Dark cyan border
@@ -223,7 +223,15 @@ pgm.add_node("vitamin_c", "Vitamin C\n(Complete Truth)", 1, 1, aspect=3.2, scale
                  'alpha': 1.0,
              })
 
-pgm.add_node("scurvy_prevention", "Scurvy\nPrevention\n(Correct Method)", 4.5, 1, aspect=3.2, scale=1.5,
+pgm.add_node("collagen", "Collagen\nSynthesis", 4, 1, aspect=3.2, scale=1.5,
+             plot_params={
+                 'facecolor': '#87CEEB',  # Sky blue for collagen synthesis
+                 'edgecolor': '#4682B4',  # Steel blue border
+                 'linewidth': 3,
+                 'alpha': 1.0,
+             })
+
+pgm.add_node("scurvy_prevention", "Scurvy\nPrevention", 7, 1, aspect=3.2, scale=1.5,
              plot_params={
                  'facecolor': '#00FA9A',  # Bright medium spring green for prevention
                  'edgecolor': '#006400',  # Dark green border
@@ -231,12 +239,13 @@ pgm.add_node("scurvy_prevention", "Scurvy\nPrevention\n(Correct Method)", 4.5, 1
                  'alpha': 1.0,
              })
 
-# Add edge showing the correct causal relationship
-pgm.add_edge("vitamin_c", "scurvy_prevention")
+# Add edges showing the correct causal chain
+pgm.add_edge("vitamin_c", "collagen")
+pgm.add_edge("collagen", "scurvy_prevention")
 
 # Render the DAG
 pgm.render()
-plt.title("DAG 3: 1928 Understanding - Vitamin C Prevents Scurvy (CORRECT)", fontsize=14, fontweight='bold')
+plt.title("DAG 3: 1928 Understanding - Vitamin C → Collagen → Scurvy Prevention (CORRECT)", fontsize=14, fontweight='bold')
 plt.show()
 ```
 
